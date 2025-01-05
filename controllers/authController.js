@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import generateTokens from '../utils/generateTokens.js';
 import supabaseInstance from '../supabaseClient.js'
@@ -71,30 +71,6 @@ const register = async (req, res) => {
     }
 };
 
-// const refreshAccessToken = async (req, res) => {
-//     try {
-//         const { refreshToken } = req.body;
-
-//         const decoded = jwt.verify(refreshToken, process.env.VITE_REFRESH_TOKEN);
-
-//         const { data: user } = await supabase
-//             .from('users')
-//             .select()
-//             .eq('id', decoded.id)
-//             .eq('refresh_token', refreshToken)
-//             .single();
-
-//         if (!user) {
-//             return res.status(401).json({ error: 'Invalid refresh token' });
-//         }
-
-//         const { accessToken } = await generateTokens(user);
-//         res.status(200).json({ accessToken });
-//     } catch (error) {
-//         console.error('Refresh token error:', error);
-//         res.status(401).json({ error: 'Invalid refresh token' });
-//     }
-// };
 
 const refreshAccessToken = async (req, res) => {
     try {
