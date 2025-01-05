@@ -9,13 +9,13 @@ const generateTokens = async (user) => {
     const accessToken = jwt.sign(
         { id: user.id, email: user.email },
         process.env.VITE_JWT_SECRET,
-        { expiresIn: '2m' }
+        { expiresIn: '5m' }
     );
 
     const refreshToken = jwt.sign(
         { id: user.id },
         process.env.VITE_REFRESH_TOKEN,
-        { expiresIn: '20m' }
+        { expiresIn: '7d' }
     );
 
     await supabase

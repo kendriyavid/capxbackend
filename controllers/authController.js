@@ -87,6 +87,8 @@ const refreshAccessToken = async (req, res) => {
             .eq('id', decoded.id)
             .eq('refresh_token', refreshToken)
             .single();
+        
+        console.log("user: ", user)
 
         if (!user) {
             return res.status(401).json({ error: 'Invalid refresh token' });
