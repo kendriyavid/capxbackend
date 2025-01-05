@@ -15,7 +15,7 @@ const generateTokens = async (user) => {
     const refreshToken = jwt.sign(
         { id: user.id },
         process.env.VITE_REFRESH_TOKEN,
-        { expiresIn: '7d' }
+        { expiresIn: '20m' }
     );
 
     await supabase

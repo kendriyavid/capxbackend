@@ -54,9 +54,6 @@ const getUserPortfolio = async (req, res) => {
                     )
                 `)
                 .eq('user_id', user.id);
-            const portfolioValuation = data.reduce((acc, stock) => {
-                return acc + (stock.units_held * stock.stocks.current_price);
-            }, 0);
             if (error) throw error;
             res.json(data);
         } catch (error) {
@@ -66,6 +63,7 @@ const getUserPortfolio = async (req, res) => {
 
 const getUserValuation = async (req, res) => {
     try {
+        console.log("nhere");
         const { user } = req.body;
         console.log(user)
         const { data, error } = await supabase
@@ -80,7 +78,8 @@ const getUserValuation = async (req, res) => {
         const portfolioValuation = data.reduce((acc, stock) => {
             return acc + (stock.units_held * stock.stocks.current_price);
         }, 0);
-        res.json({ valuation: portfolioValuation });
+        console.log(portfolioValuation);
+        res.json( portfolioValuation );
     } catch (error) {
         res.status(400).json({ error: error.message });
     }}
@@ -311,5 +310,5 @@ const  getTransactionHistory = async (req, res) => {
         getTransactionHistory,
         getUserValuation,
     };
-    
+    getUserValuation
 

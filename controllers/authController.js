@@ -98,11 +98,12 @@ const register = async (req, res) => {
 
 const refreshAccessToken = async (req, res) => {
     try {
+        console.log("refresh")
         const { refreshToken } = req.body;
 
         // Verify the refresh token
         const decoded = jwt.verify(refreshToken, process.env.VITE_REFRESH_TOKEN);
-
+        console.log("decoded")
         // Fetch the user associated with the refresh token
         const { data: user } = await supabase
             .from('users')
@@ -116,10 +117,10 @@ const refreshAccessToken = async (req, res) => {
         }
 
         // Generate new tokens
-        const { accessToken, refreshToken: newRefreshToken } = await generateTokens(user);
-
+        const { accessToken, refreshToken: newRefreshToken} = await generateTokens(user);
+        console.log("newRefreshToken")
         // Return both tokens to the client
-        res.status(200).json({ accessToken, refreshToken: newRefreshToken,user:{id:user.id} });
+        res.status(200).json({ accessToken, refreshToken: newRefreshToken,user:{id:decoded.id} });
     } catch (error) {
         console.error('Refresh token error:', error);
         res.status(401).json({ error: 'Invalid refresh token' });

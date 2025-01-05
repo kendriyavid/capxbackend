@@ -4,13 +4,13 @@ import authenticateJWT from '../middleware/authenticateJWT.js'
 
 const router = express.Router();
 
-router.get('/getallstocks',getAllStocks);
-router.get('/getstock/:stockId',getStock);
-router.post('/getuserportfolio',getUserPortfolio);
-router.post('/buystock',buyStock);
-router.post('/sellstock',sellStock);
-router.post('/gettransactionhistory',getTransactionHistory);
-router.post('/getvaluation', getUserValuation);
+router.get('/getallstocks',authenticateJWT,getAllStocks);
+router.get('/getstock/:stockId',authenticateJWT,getStock);
+router.post('/getuserportfolio',authenticateJWT,getUserPortfolio);
+router.post('/buystock',authenticateJWT,buyStock);
+router.post('/sellstock',authenticateJWT,sellStock);
+router.post('/gettransactionhistory',authenticateJWT,getTransactionHistory);
+router.post('/getvaluation',authenticateJWT, getUserValuation);
 
 
 export default router;

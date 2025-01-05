@@ -6,6 +6,7 @@ const supabase = supabaseInstance.getClient();
 const authenticateJWT = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
+        console.log(authHeader);
 
         if (!authHeader?.startsWith('Bearer ')) {
             return res.status(401).json({ message: 'Access Token Missing or Malformed' });
