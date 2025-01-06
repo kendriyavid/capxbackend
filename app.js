@@ -64,15 +64,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-// app.use(cors({
-//     origin:[ 'http://localhost:5173','http://192.168.56.1:5173', 'https://ca46-2405-201-1d-c0a5-d907-46c4-7d6f-3414.ngrok-free.app'],
-//     credentials: true
-// }));
-
 app.use(cors({
-    origin: '*',
+    origin:[ 'http://localhost:5173','http://192.168.56.1:5173', 'https://efb2-139-167-143-182.ngrok-free.app'],
     credentials: true
-   }));
+}));
+
+// app.use(cors({
+//     origin: '*',
+//     credentials: true
+//    }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
