@@ -76,7 +76,7 @@ async function fetchBatchData() {
 }
 
 // Setup SSE endpoint
-app.get('/api/sse',(req, res) => {
+app.get('/api/sse',authenticateJWT,(req, res) => {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
