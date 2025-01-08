@@ -65,7 +65,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin:[ 'http://localhost:5173','http://192.168.56.1:5173', 'https://efb2-139-167-143-182.ngrok-free.app'],
+    origin:[ 'http://localhost:5173','http://192.168.56.1:5173', 'https://capxfrontend.onrender.com'],
     credentials: true
 }));
 
