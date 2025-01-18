@@ -69,11 +69,6 @@ app.use(cors({
     credentials: true
 }));
 
-// app.use(cors({
-//     origin: '*',
-//     credentials: true
-//    }));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -84,38 +79,6 @@ import userRoutes from './routes/userRoutes.js';
 app.use('/api/auth', authRoutes);
 app.use('/api/stocks', stockRoutes);
 app.use('/api/user', userRoutes);
-
-// SSE endpoint
-// import supabaseClient from './supabaseClient.js';
-// const supabase = new supabaseClient();
-// import StockService from './stockService.js';
-// const stockService = new StockService();
-
-// app.get('/api/sse', (req, res) => {
-//     res.setHeader('Content-Type', 'text/event-stream');
-//     res.setHeader('Cache-Control', 'no-cache');
-//     res.setHeader('Connection', 'keep-alive');
-//     res.write('data: {"type":"connected"}\n\n');
-
-//     const eventEmitter = stockService.getEventEmitter();
-    
-//     const batchUpdateListener = (updates) => {
-//         const message = {
-//             type: 'update',
-//             timestamp: new Date().toISOString(),
-//             data: updates
-//         };
-//         res.write(`data: ${JSON.stringify(message)}\n\n`);
-//     };
-
-//     eventEmitter.on('batchUpdate', batchUpdateListener);
-
-//     // Handle client disconnect
-//     req.on('close', () => {
-//         eventEmitter.removeListener('batchUpdate', batchUpdateListener);
-//         res.end();
-//     });
-// });
 
 app.post('/', (req, res) => {
     console.log(req.body);
@@ -129,5 +92,4 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Something went wrong. Please try again later.' });
 });
 
-// stockService.startUpdateCycle();
 export default app;

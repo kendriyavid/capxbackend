@@ -230,6 +230,6 @@ app.get('/api/sse',authenticateJWT,(req, res) => {
 
 
 // Start cron job
-cron.schedule('*/30 * * * * *', fetchBatchData);
+cron.schedule('*/60 * * * * *', fetchBatchData);
 
 console.log('Stock price update scheduler started');
