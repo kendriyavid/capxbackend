@@ -17,12 +17,13 @@ const authenticateJWT = async (req, res, next) => {
         const user = await new Promise((resolve, reject) => {
             jwt.verify(token, process.env.VITE_JWT_SECRET, {
                 algorithms: ['HS256'],
-                maxAge: '2m'  // Extra validation for token age
+                maxAge: '2m'  
             }, (err, decoded) => {
                 if (err) reject(err);
                 resolve(decoded);
             });
         });
+        console.log(user)
 
         // Optional: Verify user still exists and is active
         const { data: activeUser } = await supabase

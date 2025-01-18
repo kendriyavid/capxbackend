@@ -209,6 +209,7 @@ const register = async (req, res) => {
 const refreshAccessToken = async (req, res) => {
     try {
         const { refreshToken } = req.body;
+        console.log("refreshToken", refreshToken)
 
         const decoded = jwt.verify(refreshToken, process.env.VITE_REFRESH_TOKEN);
 

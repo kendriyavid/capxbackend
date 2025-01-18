@@ -40,7 +40,7 @@ const getStock = async (req, res) => {
 
 const getUserPortfolio = async (req, res) => {
         try {
-            const { user } = req.body;
+            const { user } = req;
             console.log(user)
             const { data, error } = await supabase
                 .from('user_stocks')
@@ -64,7 +64,7 @@ const getUserPortfolio = async (req, res) => {
 const getUserValuation = async (req, res) => {
     try {
         console.log("nhere");
-        const { user } = req.body;
+        const { user } = req;
         console.log(user)
         const { data, error } = await supabase
             .from('user_stocks')
@@ -97,7 +97,8 @@ const buyStock = async (req, res) => {
         try {
             console.log("here");
             
-            const { symbol, units, user } = req.body;
+            const { symbol, units } = req.body;
+            const {user} = req;
             console.log(symbol, units,user);
 
             const { data: stock } = await supabase
@@ -194,7 +195,8 @@ const buyStock = async (req, res) => {
     // Sell stocks
 const sellStock = async (req, res) => {
         try {
-            const { symbol, units,user } = req.body;
+            const { symbol, units } = req.body;
+            const {user} = req;
             
             const { data: id } = await supabase
             .from('stocks')
@@ -278,8 +280,10 @@ const sellStock = async (req, res) => {
 
     // Get transaction history
 const  getTransactionHistory = async (req, res) => {
+    // console.log(req)
         try {
-            const {user} = req.body;
+            // const {user} = req.body;
+            const {user} = req;
             console.log(user.id);
             const { data, error } = await supabase
                 .from('transactions')
