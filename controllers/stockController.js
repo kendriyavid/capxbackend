@@ -1,8 +1,7 @@
 import supabaseInstance from '../supabaseClient.js';
 const supabase = supabaseInstance.getClient();
 
-// api/stocks/getallstocks
-const getAllStocks = async (req, res) => { // Add req if necessary for logic
+const getAllStocks = async (req, res) => {
     try {
         console.log("Fetching all stocks...");
         const { data, error } = await supabase
@@ -18,8 +17,6 @@ const getAllStocks = async (req, res) => { // Add req if necessary for logic
         res.status(400).json({ error: error.message });
     }
 };
-
-//http://localhost:3000/api/stocks/getstock/a324d334-82a6-494e-ae56-11aeec60b53c
 
 const getStock = async (req, res) => {
         try {
@@ -278,11 +275,9 @@ const sellStock = async (req, res) => {
 
 
 
-    // Get transaction history
 const  getTransactionHistory = async (req, res) => {
-    // console.log(req)
         try {
-            // const {user} = req.body;
+           
             const {user} = req;
             console.log(user.id);
             const { data, error } = await supabase
@@ -309,11 +304,10 @@ const  getTransactionHistory = async (req, res) => {
         getAllStocks, 
         getStock, 
         getUserPortfolio, 
-        buyStock, // Add this here
+        buyStock, 
         sellStock, 
         getTransactionHistory,
         getUserValuation,
     };
     getUserValuation
 
-//test deployment
